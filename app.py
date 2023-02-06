@@ -36,9 +36,9 @@ class SceneBreakdown2(sgtk.platform.Application):
 
             # Register a menu entry on the ShotGrid menu so that users can launch the panel.
             self.engine.register_command(
-                "Scene Breakdown...",
+                "{}...".format(self.get_setting("display_name")),
                 self.create_panel,
-                {"type": "panel", "short_name": "breakdown"},
+                {"type": "panel", "short_name": "breakdown2"},
             )
 
         elif self.get_setting("app_display_mode") == "dialog":
@@ -46,9 +46,9 @@ class SceneBreakdown2(sgtk.platform.Application):
             # Register the app as a dialog
             # Register a menu entry on the ShotGrid menu so that users can launch the dialog.
             self.engine.register_command(
-                "Scene Breakdown...",
+                "{}...".format(self.get_setting("display_name")),
                 lambda: self.create_dialog(),
-                {"type": "dialog", "short_name": "breakdown"},
+                {"type": "dialog", "short_name": "breakdown2"},
             )
 
         else:
@@ -93,7 +93,7 @@ class SceneBreakdown2(sgtk.platform.Application):
         try:
             widget = self.engine.show_panel(
                 self._unique_panel_id,
-                "Scene Breakdown",
+                self.get_setting("display_name"),
                 self,
                 tk_multi_breakdown2.AppDialog,
             )
